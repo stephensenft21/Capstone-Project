@@ -1,6 +1,7 @@
 
+const URL = "http://localhost:8088/"
 
-LoginAPI = {
+const loginAPI = { 
 
 
     getUser: (id) => { // this will get all the users not sure if this will get used
@@ -17,4 +18,7 @@ LoginAPI = {
             body: JSON.stringify(newUser)
         }).then(r => r.json())
     },
+
 }
+
+export default loginAPI
