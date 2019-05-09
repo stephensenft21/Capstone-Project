@@ -6,8 +6,9 @@
 .topNav {
     display: flex;
      flex-direction: row;
-     justify-content: space-around;
+     justify-content: space-around,center;
      align-content: space-around;
+     margin-left: 50%;
 }
 
 /* .nav-wrapper {
@@ -15,9 +16,53 @@
 } */
 
 
-.app-title {
-    border: black;
+/* .app-title {
+   
+} */
+
+
+.recContainer {
+    display: flex;
+    flex-direction: column;
+    margin-right: 15%;
+    margin-left: 15%;
+}
+
+/* .mainCont {
+    display: flex;
+    flex-direction: column;
+    margin-right: 15%;
+    margin-left: 15%; */
+    
+/* } */
+
+
+#buttonDropDownContainer{
+
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    margin-left: 14%;
+    margin-right: 2%;
+    margin-bottom: 5%; 
+    color: blue;
+
+
 }
 
 
+.h1 {
+    margin-left: 32%;
+    font-size: 40px;
+    font-style: italic;
+    
+    
+}
+
+body { 
+    font-family: 'Just Another Hand', cursive;
+    background-color: rgb(255, 238, 0);
+
+
+}
 

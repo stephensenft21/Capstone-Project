@@ -6,7 +6,7 @@ const htmlBuilder = {
     createElementWithText(element, text, id, className) {
         const newElement = document.createElement(element)
         if (text) {
-            newElement.textContent = text
+            newElement.textContent = text   
         }                                                                                 
                                                                                                 
         if (id) {                                                                                

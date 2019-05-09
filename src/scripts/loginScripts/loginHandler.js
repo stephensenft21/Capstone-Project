@@ -2,12 +2,13 @@ import HTMLBuilder from "./../HTMLBuilder"
 import loginAPI from "./loginAPI"
 //createNewUser is meant to be a factory function that is used by the post new user method.
 
-const newUser = (userName, password) => {
-    return {
+const createNewUser = (userName, password) => {
+    let newUser = {
         userName: userName,
         password: password,
 
     }
+return newUser
 }
 
 //function to see if the userName is valid 
