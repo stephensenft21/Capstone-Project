@@ -4,7 +4,7 @@ const URL = "http://localhost:8088/"
 const loginAPI = { 
 
 
-    getUser: (id) => { // this will get all the users not sure if this will get used
+    getUser: (id) => { //this will grab a user 
         return fetch(`${URL}/users/${id}`)
             .then(r => r.json())
     },

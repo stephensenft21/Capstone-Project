@@ -1,6 +1,6 @@
 import htmlBuilder from "../HTMLBuilder";
 import loginHandler from "./loginHandler"
-
+console.log(loginHandler)
 const loginForm = {
     buildLoginForm() {
 
@@ -19,6 +19,7 @@ const loginForm = {
         let userNameLabel = htmlBuilder.createElementWithText("label", "UserName")
         // creating usernameInput
         let userNameInput = htmlBuilder.createElementWithText("input", "userNameInput")
+        
         userNameInput.classList.add("form-control")
         userNameInput.placeholder = "UserName"
 
@@ -34,13 +35,13 @@ const loginForm = {
         //creating login button
 
 
-        const loginButton = htmlBuilder.createElementWithText("button", "Login", "loginButton")
+        const loginButton = htmlBuilder.createElementWithText("button", "Login", "login--button")
         loginButton.className = "btn btn-primary"
         loginButton.type = "button"
         // loginButton.textContent = "Login"
 
         //adding event listener to login user
-       // loginButton.addEventlistener("click", loginHandler.login)
+        
 
 
         //appending elements
@@ -54,9 +55,9 @@ const loginForm = {
         outerLoginSection.appendChild(formElement)
         loginFragment.appendChild(outerLoginSection)
         document.querySelector("#nav-container").appendChild(loginFragment)
+ 
 
-
-
+      document.querySelector("#login--button").addEventListener("click", loginHandler.login)
 
 
 

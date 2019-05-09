@@ -5,9 +5,9 @@ import buildNavBar from "../navBar";
 
 
 
-const loader = {
-initiateLoadPage() {
-
+const loadPage = {
+load() {
+let userId =sessionStorage.getItem("userId")
 clearSection.clearAllSections();
 
 
@@ -30,3 +30,10 @@ buildNavBar.buildList();
 
 
 }
+
+
+
+
+
+
+export default loadPage

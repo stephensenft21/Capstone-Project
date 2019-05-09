@@ -21,15 +21,15 @@
              body: JSON.stringify(recipe)
          }).then(response => response.json());
      },
-     deleteRecipe() {
-         return fetch(`${URL}recipes`, {
-             method: "DELETE",
-
-         })
+     deleteRecipe(id) {
+         return fetch(`${URL}/recipes/${id}`, {
+             method: "DELETE"
+   
+         }).then(r=>r.json());
 
      },
      updateRecipe(recipe) {
-         return fetch(`${URL}/recipe`, {
+         return fetch(`${URL}/recipes`, {
              method: "PATCH",
              header: {
                  "Content-Type": "application/json"
