@@ -41,11 +41,15 @@ const buildRecipeObject = {
                     const ingredientsUl = htmlBuilder.createElementWithText("ul",undefined, "ingredients--ul", "ingredientsUl")
                     const ingredientSplit = recipe.ingredients.split(",")
                     const recipeFrag = document.createDocumentFragment()
-                    ingredientSplit.map(ingredient => {
+                   
+                    
+                    if(ingredientSplit === undefined) {
+                        alert("please use comma")
+                    }else { ingredientSplit.map(ingredient => {
                         recipeFrag.appendChild(htmlBuilder.createElementWithText("li", `${ingredient}`, undefined, "recipeIngredient"))
                         
-                    })
-                    
+                        
+                    })}
 
                     const deleteButton = htmlBuilder.createElementWithText("button", "Delete","delete--recipe","deleteButton")
                     const editButton = htmlBuilder.createElementWithText("button","Edit",)

@@ -42,7 +42,7 @@ const recipeForm = {
         const costDropDownSelector = htmlBuilder.createElementWithText("select", "Cost", "costDropDown")
         //costDropDownUL.classList.add("dropdown-menu")
         const listNull = htmlBuilder.createElementWithText("option", "Cost", undefined, "null")
-        listNull.setAttribute("value","")
+        listNull.setAttribute("value", "")
         const listPriceOne = htmlBuilder.createElementWithText("option", "$10.00", undefined, "price-one")
         listPriceOne.setAttribute("value", 1)
         const listPriceTwo = htmlBuilder.createElementWithText("option", "$15.00", undefined, "price-two")
@@ -54,17 +54,17 @@ const recipeForm = {
         costDropDownSelector.appendChild(listPriceTwo)
         costDropDownSelector.appendChild(listPriceThree)
 
-                                                        
-        
-        
-        
+
+
+
+
         const difficultyDropDown = htmlBuilder.createElementWithText("select", undefined, "diffDropDown")
         const diffNull = htmlBuilder.createElementWithText("option", "Difficulty", undefined, "diffNull")
         diffNull.setAttribute("value", "")
         const listEasy = htmlBuilder.createElementWithText("option", "Quick&Easy", "quickEasy", undefined)
-        listEasy.setAttribute("value", true)
-        const listHard = htmlBuilder.createElementWithText("option", "NotSoEasy", "notEasy", undefined)  
-        listHard.setAttribute("value", false)    
+        listEasy.setAttribute("value", 1)
+        const listHard = htmlBuilder.createElementWithText("option", "Not-So-Easy", "notEasy", undefined)
+        listHard.setAttribute("value", 2)
         difficultyDropDown.appendChild(diffNull)
         difficultyDropDown.appendChild(listEasy)
         difficultyDropDown.appendChild(listHard)
@@ -81,7 +81,7 @@ const recipeForm = {
         //text area element for Recipe instructions 
         const instructions = htmlBuilder.createElementWithText("textarea", undefined, "recipe--instructions", undefined) //add class later for styling
         instructions.placeholder = "Enter Instructions"
-        
+
 
         recipeCollection.getAllRecipes().then()
 

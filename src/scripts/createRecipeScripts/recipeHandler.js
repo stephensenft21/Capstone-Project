@@ -15,7 +15,7 @@ const newRecipe = {
         // const costId = document.getElementById("costDropDown").value
         // const difficulty = document.getElementById("diffDropDown").value
         const title = document.getElementById("recipe--Title").value
-        const recipe = document.getElementById("recipe--ingredients").value
+        const ingredients = document.getElementById("recipe--ingredients").value
         const instructions = document.getElementById("recipe--instructions").value
         const selectValueCatergory = document.querySelector("#categoryDropDown")
         const selectValueCost = document.querySelector("#costDropDown")
@@ -33,21 +33,21 @@ const newRecipe = {
 
         } else {
 
-            let makeRecipeObj = (title, recipe, instructions, category, cost, isDifficult) => {
+            let makeRecipeObj = (title,ingredients, instructions,  opt1,opt2,opt3) => {
                 const postObject = {
                     userId: Number(data),
                     title: title,
-                    recipe: recipe,
+                    ingredients: ingredients,
                     instructions: instructions,
-                    categoryId: category,
-                    costId: cost,
-                    quickEasy: false
-
+                    categoryId: parseInt(opt1),
+                    costId: parseInt(opt2),
+                    difficultyId: parseInt(opt3)
+                 //parsing the objects to return an integer value
                 }
                 return postObject
             }
                
-            recipeCollection.postNewRecipe(makeRecipeObj(title, recipe, instructions, opt1, opt2, opt3))
+            recipeCollection.postNewRecipe(makeRecipeObj(title, ingredients, instructions, opt1, opt2, opt3))
                 .then(() => {
                     const container = document.querySelector("#recipe--container")
                     //  console.log(container)
@@ -55,7 +55,7 @@ const newRecipe = {
                         container.removeChild(container.firstChild)
                     }
                     // title.value = ""
-                    // recipe.value = ""
+                    
                     // instructions.value = ""
                     // categoryId.value = ""
                     // costId.value = ""
