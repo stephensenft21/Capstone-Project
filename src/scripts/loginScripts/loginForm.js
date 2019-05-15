@@ -18,17 +18,18 @@ const loginForm = {
         //creating userName label
         let userNameLabel = htmlBuilder.createElementWithText("label", "UserName")
         // creating usernameInput
-        let userNameInput = htmlBuilder.createElementWithText("input", "userNameInput")
+        let userNameInput = htmlBuilder.createElementWithText("input", "userNameInput", "username--input")
         
         userNameInput.classList.add("form-control")
         userNameInput.placeholder = "UserName"
 
 
         //Password label and Password Input
-        let passwordLabel = htmlBuilder.createElementWithText("label", "PassWord")
-        let passwordInput = htmlBuilder.createElementWithText("input", "PasswordInput")
+        let passwordLabel = htmlBuilder.createElementWithText("label", "PassWord",)
+        let passwordInput = htmlBuilder.createElementWithText("input", "PasswordInput", "password--input")
         passwordInput.classList.add("form-control")
         passwordInput.placeholder = "Password"
+        passwordInput.type = "password"
 
         const loginButtonGroup = formElement.appendChild(htmlBuilder.createElementWithText("div"))
         loginButtonGroup.classList.add("btn-group")

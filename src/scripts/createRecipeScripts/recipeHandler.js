@@ -2,10 +2,10 @@ import htmlBuilder from "../HTMLBuilder";
 import recipeForm from "./recipeForm";
 import API from "./recipeCollection"
 import recipeBuilder from "./recipes"
-
-
-let data = sessionStorage.getItem("userId")
-
+import editForm from "./editRecipe";
+import clearSection from "../clearSections"
+// let data = sessionStorage.getItem("userId")
+let data = 2
 const newRecipe = {
     saveRecipeHandler() {
 
@@ -52,7 +52,7 @@ const newRecipe = {
                 return postObject
             }
             //fetch call to post a new recipe
-            recipeCollection.postNewRecipe(makeRecipeObj(title, ingredients, instructions, opt1, opt2, opt3))
+            API.postNewRecipe(makeRecipeObj(title, ingredients, instructions, opt1, opt2, opt3))
                 .then(() => {
                     const container = document.querySelector("#recipe--container")
                     //  console.log(container)
@@ -67,12 +67,12 @@ const newRecipe = {
 
 
 
-    removeRecipe(id){
-        console.log(id)
+    removeRecipe(id) {
+        // console.log(id)
         const container = document.querySelector("#recipe-container")
         let recipeId = parseInt(id.split("--")[1])
-        console.log(recipeId)
-        debugger
+        // console.log(recipeId)
+
         return API.deleteRecipe(recipeId)
 
             .then(() => {
@@ -86,12 +86,50 @@ const newRecipe = {
 
 
     },
+  //this event fires when the user clicks the edit button 
+    handleEditRecipe() {
+          let recipeId = parseInt(event.target.id.split("--")[1]);
+          let parentNodeId = event.target.parentNode.id
+        //  console.log(parentNodeId)
+       const recipeDiv = document.querySelector(`#recipe-Id--${recipeId}`)
+        //   console.log(recipeDiv)
 
-    // updateRecipe() {
-    //     let recipeId = parseInt(event.target.id.split("--")[1])
-    //     recipeCollection.updateRecipe(recipeId)
+          API.getOneRecipe(recipeId).then(recipeToEdit => { 
+              console.log("hi from edit handle")
+            htmlBuilder.clearContainer(recipeDiv)
+            //   console.log(recipeToEdit)
+              const editFormForRecipe = editForm.recipeEditForm(recipeToEdit,recipeId) 
+              console.log(editFormForRecipe)
+              recipeDiv.appendChild(editFormForRecipe)
+          })
+//  console.log("")
+    },
 
-    // }
+
+//update recipe handler after the recipe has been edited
+    handleUpdateRecipe() {
+        let recipeId = parseInt(event.target.id.split("--")[1])
+        // console.log(recipeId)
+        // console.log(event)
+        const editedRecipeTitle = document.querySelector(`#edit-recipe-title--${recipeId}`).value
+        const editedRecipeIngredients = document.querySelector(`#edit-recipe-ingredients--${recipeId}`).value
+        const editesRecipeInstructions = document.querySelector(`#edit-recipe-instructions--${recipeId}`).value
+
+
+        // console.log(editedRecipeTitle.value, editedRecipeIngredients.value, editesRecipeInstructions.value)
+        let editedRecipe = {
+            title: editedRecipeTitle,
+            ingredients: editedRecipeIngredients,
+            instructions: editesRecipeInstructions
+        };
+        console.log(editedRecipe)
+         API.updateRecipe(recipeId, editedRecipe).then(() => {
+             clearSection.clearRecipe()
+            recipeBuilder.listRecipe()
+        
+        })
+                
+    }
 }
 
 

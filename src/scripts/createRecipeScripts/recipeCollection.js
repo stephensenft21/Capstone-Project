@@ -2,7 +2,7 @@
 
  const API = {
      getOneRecipe(id) {
-         return fetch(`${URL}/recipes?_expand=difficulty&_expand=cost&_expand=category/${id}`).then(response =>
+         return fetch(`${URL}/recipes/${id}?_expand=difficulty&_expand=cost&_expand=category`).then(response =>
              response.json()
          );
      },
@@ -11,7 +11,7 @@
              response.json()
          );
      },
-      // api call to save new user recipee
+     // api call to save new user recipee
      postNewRecipe(recipe) {
          return fetch(`${URL}/recipes`, {
              method: "POST",
@@ -24,12 +24,12 @@
      deleteRecipe(id) {
          return fetch(`${URL}/recipes/${id}`, {
              method: "DELETE"
-   
-         }).then(r=>r.json());
+
+         }).then(r => r.json());
 
      },
-     updateRecipe(recipe) {
-         return fetch(`${URL}/recipes`, {
+     updateRecipe(id, recipe) {
+         return fetch(`${URL}/recipes/${id}`, {
              method: "PATCH",
              header: {
                  "Content-Type": "application/json"
@@ -37,13 +37,13 @@
              },
              body: JSON.stringify(recipe)
 
-         })
+         }).then(r => r.json())
      },
 
- 
+
  };
 
- 
+
 
 
 

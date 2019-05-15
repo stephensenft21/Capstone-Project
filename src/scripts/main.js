@@ -4,9 +4,10 @@ import recipeForm from "./createRecipeScripts/recipeForm"
 import saveRecipeHandler from "./createRecipeScripts/recipeHandler"
 import makeRecipe from "./createRecipeScripts/recipes"
 import clearSection from "./clearSections"
-buildNavBar.buildList()
-//loginForm.buildLoginForm()
-recipeForm.buildRecipeForm()
+import load from "./loginScripts/loadPage"
+
+// loginForm.buildLoginForm()
+load.load()
 console.log(recipeForm)
 //saveRecipeHandler.saveRecipeHandler()
 //makeRecipe.listRecipe()

@@ -1,10 +1,14 @@
 import htmlBuilder from "../HTMLBuilder";
 import recipeHandler from "./recipeHandler"
 import recipeCollection from "./recipeCollection"
+
+
+// form for user to create a new recipe
 const recipeForm = {
     buildRecipeForm() {
         // const recipeFragment = document.createDocumentFragment()
-        const mainContainer = htmlBuilder.createElementWithText("section", undefined, "main--Container", "mainCont")
+        const mainContainer = htmlBuilder.createElementWithText("section", "", "main--Container", "mainCont")
+        console.log()
         const buttonDropDownContainer = htmlBuilder.createElementWithText("section", undefined, "buttonDropDownContainer")
         const recipeContainer = htmlBuilder.createElementWithText("section", undefined, "recipe--container", "recContainer")
         recipeContainer.classList.add("Card")
@@ -13,13 +17,14 @@ const recipeForm = {
         // newRecipeH1.classList.add("Card")
 
         //Button to save recipe 
-        const saveRecipeButton = htmlBuilder.createElementWithText("button", "SaveRecipe", "saveButton")
+        const saveRecipeButton = htmlBuilder.createElementWithText("button", "SaveRecipe", "save--Button",)
+        saveRecipeButton.classList.add("saveBtn")
         saveRecipeButton.addEventListener("click", recipeHandler.saveRecipeHandler)
-
+        
 
         // recipe button drop-down with four categories.
         const categoryDropDownSelector = htmlBuilder.createElementWithText("select", "Category", "categoryDropDown")
-        //categoryDropDownSelector.classList.add("dropdown-menu")
+        // categoryDropDownSelector.classList.add("btn-group dropright")
         const listCategory = htmlBuilder.createElementWithText("option", "Category", undefined, "Category")
         listCategory.setAttribute("value", "")
         const listMexican = htmlBuilder.createElementWithText("option", "Mexican", "1")
@@ -83,10 +88,7 @@ const recipeForm = {
         instructions.placeholder = "Enter Instructions"
 
 
-        recipeCollection.getAllRecipes().then()
-
-
-
+        recipeCollection.getAllRecipes()
 
 
         recipeFragment.appendChild(recipeTitle)
@@ -103,30 +105,10 @@ const recipeForm = {
         mainContainer.appendChild(buttonDropDownContainer)
         mainContainer.appendChild(recipeContainer)
 
-
-
         document.querySelector("#recipe-container").appendChild(mainContainer)
 
-
     }
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 export default recipeForm
