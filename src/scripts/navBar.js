@@ -3,9 +3,10 @@ import loginForm from "./loginScripts/loginForm"
 import recipeBuilder from "./createRecipeScripts/recipes"
 import recipeForm from "./createRecipeScripts/recipeForm"
 import clearSection from "./clearSections"
+import searchObject from "./search"
 // const login = document.querySelector("#")
 const container = document.querySelector("#nav-container")
-
+const recipeContainer = document.querySelector("#recipe-container")
 
 // A function to build my NavBar
 
@@ -20,7 +21,11 @@ const buildNavBar = {
 
         const searchAnchor = htmlBuilder.createAnchorElement("Search", "search-button", "searchBtn")
         searchAnchor.classList.add("card-text")
-       // searchAnchor.addEventListener("click", )
+        searchAnchor.addEventListener("click",function() {
+          clearSection.clearRecipe()
+          recipeContainer.appendChild(searchObject.search())
+
+        })
         const myRecipeAnchor = htmlBuilder.createAnchorElement("My Recipes", "My-Recipes", "myRecipeBtn")
         myRecipeAnchor.classList.add("card-text")
 
@@ -41,7 +46,6 @@ const buildNavBar = {
          welcomeHeader.classList.add("card-header","app-title"); //bootstrap styling
         
 // searchAnchor.addEventListener("click",)
-
 
 
 

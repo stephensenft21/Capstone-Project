@@ -93,6 +93,7 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    border-radius: 50%;
     
     margin: 4px 2px;
     -webkit-transition-duration: 0.4s; /* Safari */
@@ -178,5 +179,31 @@ body {
     
 
 
+
+  }
+
+
+  .searchDropDown{
+    display: flex;
+    align-content: center;
+   margin-left: 20%;
+   margin-top: 2%;
+
+  }
+
+  .searchRecipe{
+
+    display: flex;
+    justify-content: center;
+  }
+
+  .searchButton{
+    display: flex; 
+    align-content: center;
+  }
+
+
+  .searchResultsContainer{
+     border: solid    
 
   }

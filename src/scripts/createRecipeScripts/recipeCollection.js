@@ -30,8 +30,8 @@
      },
      updateRecipe(id, recipe) {
          return fetch(`${URL}/recipes/${id}`, {
-             method: "PATCH",
-             header: {
+             method: "PUT",
+             headers: {
                  "Content-Type": "application/json"
 
              },

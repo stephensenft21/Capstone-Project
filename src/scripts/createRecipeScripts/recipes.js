@@ -18,7 +18,7 @@ import recipeHandler from "./recipeHandler"
 
 const buildRecipeObject = {
 
-    listRecipe() {
+    listRecipe: (matchedRecipes) => {
         // make fetch call to the recipes 
         // map over them 
         //.then()
@@ -27,14 +27,16 @@ const buildRecipeObject = {
 
 
         const container = document.querySelector("#recipe-container")
-        API.getAllRecipes()
+        if (!matchedRecipes) {     
+          API.getAllRecipes()
             .then(recipes => {
                 //console.log(listRecipe)
                 clearSections.clearRecipe()
                 recipes.reverse()
                 recipes.map(recipe => {
                     const recipeDiv = htmlBuilder.createElementWithText("div", undefined, `recipe-Id--${recipe.id}`, "recipeDiv")
-                    recipeDiv.classList.add("card")
+                    recipeDiv.classList = "card","border-left","border-right","border-top","border", "border-bottom"
+                    // recipeDiv.classList = "shadow-lg p-3 mb-5 bg-white rounded"
                     const title = htmlBuilder.createElementWithText("h1", `${recipe.title}`, `recipe-title--${recipe.id}`, "recipeTitle")
                     title.classList.add("card-header")
                     const instructions = htmlBuilder.createElementWithText("p", `${recipe.instructions}`, "recipe--instructions", "recipeInstructions")
@@ -92,7 +94,53 @@ const buildRecipeObject = {
                 })
 
                 console.log(container)
+            })} 
+            
+            else { 
+                
+                matchedRecipes.map(recipe => {
+                const recipeDiv = htmlBuilder.createElementWithText("div", undefined, `recipe-Id--${recipe.id}`, "recipeDiv")
+                recipeDiv.classList = "card","border-left","border-right","border-top","border", "border-bottom"
+                // recipeDiv.classList = "shadow-lg p-3 mb-5 bg-white rounded"
+                const title = htmlBuilder.createElementWithText("h1", `${recipe.title}`, `recipe-title--${recipe.id}`, "recipeTitle")
+                title.classList.add("card-header")
+                const instructions = htmlBuilder.createElementWithText("p", `${recipe.instructions}`, "recipe--instructions", "recipeInstructions")
+                instructions.classList.add("card-bottom")
+                const recipeUl = htmlBuilder.createElementWithText("ul", undefined, "recipe--ul", "recipeUl")
+                const category = htmlBuilder.createElementWithText("li", `${recipe.category.categoryName}`, "recipe--category", "recipeCategory")
+                const cost = htmlBuilder.createElementWithText("li", `${recipe.cost.costValue}`, "recipe--cost", "")
+                const ingredientsUl = htmlBuilder.createElementWithText("ul", undefined, "ingredients--ul", "ingredientsUl")
+                const ingredientSplit = recipe.ingredients.split(",")
+                const recipeFrag = document.createDocumentFragment()   
+                
+                if (ingredientSplit === undefined) {
+                    alert("please use comma")
+                } else {
+                    ingredientSplit.map(ingredient => {
+                        recipeFrag.appendChild(htmlBuilder.createElementWithText("li", `${ingredient}`, undefined, "recipeIngredient"))
+                    })
+                }
+
+                let difficulty = ""
+                if (recipe.difficultyId === 1) {
+                    difficulty = htmlBuilder.createElementWithText("li", "Easy", "recipe--difficulty", "recipeDifficulty")
+                } else {
+                    difficulty = htmlBuilder.createElementWithText("li", "Hard", "recipe--difficulty", "recipeDifficulty")
+                }
+
+
+                //Appending all my elements to the #recipe-container
+                recipeUl.appendChild(category)
+                recipeUl.appendChild(cost)
+                recipeUl.appendChild(difficulty)
+                recipeDiv.appendChild(title)
+                ingredientsUl.appendChild(recipeFrag)
+                recipeDiv.appendChild(recipeUl)
+                recipeDiv.appendChild(ingredientsUl)
+                recipeDiv.appendChild(instructions)
+                container.appendChild(recipeDiv)
+         
+
             })
-    }
-}
+    }}}
 export default buildRecipeObject

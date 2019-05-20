@@ -70,7 +70,7 @@ const newRecipe = {
     removeRecipe(id) {
         // console.log(id)
         const container = document.querySelector("#recipe-container")
-        let recipeId = parseInt(id.split("--")[1])
+        let recipeId = Number(event.target.id.split("--")[1])
         // console.log(recipeId)
 
         return API.deleteRecipe(recipeId)
@@ -83,58 +83,102 @@ const newRecipe = {
                 }
             }).then(() => recipeBuilder.listRecipe())
 
-
-
-    },
-  //this event fires when the user clicks the edit button 
+          },
+    
+    
+ //this event fires when the user clicks the edit button 
     handleEditRecipe() {
-          let recipeId = parseInt(event.target.id.split("--")[1]);
-          let parentNodeId = event.target.parentNode.id
+        let recipeId = parseInt(event.target.id.split("--")[1]);
+        let parentNodeId = event.target.parentNode.id
         //  console.log(parentNodeId)
-       const recipeDiv = document.querySelector(`#recipe-Id--${recipeId}`)
+        
+        
+        const recipeDiv = document.querySelector(`#recipe-Id--${recipeId}`)
         //   console.log(recipeDiv)
 
-          API.getOneRecipe(recipeId).then(recipeToEdit => { 
-              console.log("hi from edit handle")
+        
+        API.getOneRecipe(recipeId).then(recipeToEdit => {
+            console.log("hi from edit handle")
             htmlBuilder.clearContainer(recipeDiv)
             //   console.log(recipeToEdit)
-              const editFormForRecipe = editForm.recipeEditForm(recipeToEdit,recipeId) 
-              console.log(editFormForRecipe)
-              recipeDiv.appendChild(editFormForRecipe)
-          })
-//  console.log("")
+            const editFormForRecipe = editForm.recipeEditForm(recipeToEdit, recipeId)
+            console.log(editFormForRecipe)
+            recipeDiv.appendChild(editFormForRecipe)
+        })
+        //  console.log("")
     },
 
 
-//update recipe handler after the recipe has been edited
-    handleUpdateRecipe() {
+    //update recipe handler after the recipe has been edited
+    handleUpdateRecipe(event) {
+        
+        event.preventDefault()
+        // split the id to get the number value given to the edit button
         let recipeId = parseInt(event.target.id.split("--")[1])
         // console.log(recipeId)
         // console.log(event)
+        
+        
+        
         const editedRecipeTitle = document.querySelector(`#edit-recipe-title--${recipeId}`).value
         const editedRecipeIngredients = document.querySelector(`#edit-recipe-ingredients--${recipeId}`).value
         const editesRecipeInstructions = document.querySelector(`#edit-recipe-instructions--${recipeId}`).value
+        const editRecipeCategory = document.querySelector(".editCat")
+        const editRecipeCost = document.querySelector(".editCost")
+        const editRecipeDifficulty = document.querySelector(".editDiff")
 
-
+        //var TextInsideLi = ctrl.getElementsByTagName('p')[0].innerHTML;
+       
+        console.log(editRecipeCategory.id.split("--")[1])
         // console.log(editedRecipeTitle.value, editedRecipeIngredients.value, editesRecipeInstructions.value)
+
+
         let editedRecipe = {
+            userId: Number(sessionStorage.getItem("userId")),
+            id: Number(recipeId),
             title: editedRecipeTitle,
             ingredients: editedRecipeIngredients,
-            instructions: editesRecipeInstructions
+            instructions: editesRecipeInstructions,
+            categoryId: Number(editRecipeCategory.id.split("--")[1]),
+            difficultyId: Number(editRecipeDifficulty.id.split("--")[1]),
+            costId: Number(editRecipeCost.id.split("--")[1])
         };
+
+        // {
+        //     "userId": 1,
+        //     "title": "New Recipe",
+        //     "ingredients": "New Recipe",
+        //     "instructions": "New Recipe",
+        //     "categoryId": 2,
+        //     "costId": 1,
+        //     "difficultyId": 1,
+        //     "id": 17
+        //   }
         console.log(editedRecipe)
-         API.updateRecipe(recipeId, editedRecipe).then(() => {
-             clearSection.clearRecipe()
-            recipeBuilder.listRecipe()
-        
-        })
-                
+        return  API.updateRecipe(recipeId, editedRecipe)
+         .then(() => clearSection.clearRecipe())
+         .then(() => recipeBuilder.listRecipe())
     }
 }
 
 
 
 export default newRecipe
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // deleteTaskHandler: () => {
