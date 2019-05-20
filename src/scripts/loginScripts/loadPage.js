@@ -7,11 +7,11 @@ import callSearch from "../search"
 
 const loadPage = {
     load() {
-        // let userId =sessionStorage.getItem("userId")
+         let userId =sessionStorage.getItem("userId")
         clearSection.clearAllSections();
        
         buildNavBar.buildList();
-        //callSearch.searchObject()
+        callSearch.search()
         //next view will be search page 
     // 3rd view will be 
         recipeForm.buildRecipeForm()

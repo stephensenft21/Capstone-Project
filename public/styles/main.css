@@ -204,6 +204,12 @@ body {
 
 
   .searchResultsContainer{
-     border: solid    
+     border: solid;    
 
+  }
+
+  .recipeDifficulty{
+    display: flex;
+    /* background: firebrick; */
+  
   }

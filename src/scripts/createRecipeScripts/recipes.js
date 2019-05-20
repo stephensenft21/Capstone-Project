@@ -33,7 +33,7 @@ const buildRecipeObject = {
                 //console.log(listRecipe)
                 clearSections.clearRecipe()
                 recipes.reverse()
-                recipes.map(recipe => {
+                recipes.map(recipe => { 
                     const recipeDiv = htmlBuilder.createElementWithText("div", undefined, `recipe-Id--${recipe.id}`, "recipeDiv")
                     recipeDiv.classList = "card","border-left","border-right","border-top","border", "border-bottom"
                     // recipeDiv.classList = "shadow-lg p-3 mb-5 bg-white rounded"

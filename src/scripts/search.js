@@ -14,6 +14,7 @@ const searchObject = {
         searchButton.type = "button"
         searchButton.className = "btn btn-warning"
         searchButton.addEventListener("click", searchHandler.searchRecipe)
+        
         const searchDropDownContainer = htmlBuilder.createElementWithText("section", undefined, "search-dropDown-container", "searchDropDown")
               
         

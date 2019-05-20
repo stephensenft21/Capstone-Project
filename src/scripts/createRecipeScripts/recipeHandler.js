@@ -7,7 +7,7 @@ import clearSection from "../clearSections"
 // let data = sessionStorage.getItem("userId")
 let data = 2
 const newRecipe = {
-    saveRecipeHandler() {
+    saveRecipeHandler: () => {
 
 
         // const categoryId = document.getElementById("categoryDropDown").value
@@ -17,7 +17,7 @@ const newRecipe = {
 
 
 
-        //grabbing the values from the elements 
+        //grabbing the Id's from the elements and putting them into variables
         const title = document.getElementById("recipe--Title").value
         const ingredients = document.getElementById("recipe--ingredients").value
         const instructions = document.getElementById("recipe--instructions").value
@@ -44,9 +44,9 @@ const newRecipe = {
                     title: title,
                     ingredients: ingredients,
                     instructions: instructions,
-                    categoryId: parseInt(opt1),
-                    costId: parseInt(opt2),
-                    difficultyId: parseInt(opt3)
+                    categoryId: Number(opt1),
+                    costId: Number(opt2),
+                    difficultyId: Number(opt3)
                     //parsing the objects to return an integer value
                 }
                 return postObject
@@ -67,7 +67,7 @@ const newRecipe = {
 
 
 
-    removeRecipe(id) {
+    removeRecipe: (id) => {
         // console.log(id)
         const container = document.querySelector("#recipe-container")
         let recipeId = Number(event.target.id.split("--")[1])
@@ -83,20 +83,20 @@ const newRecipe = {
                 }
             }).then(() => recipeBuilder.listRecipe())
 
-          },
-    
-    
- //this event fires when the user clicks the edit button 
-    handleEditRecipe() {
+    },
+
+
+    //this event fires when the user clicks the edit button 
+    handleEditRecipe: () => {
         let recipeId = parseInt(event.target.id.split("--")[1]);
-        let parentNodeId = event.target.parentNode.id
+        //let parentNodeId = event.target.parentNode.id
         //  console.log(parentNodeId)
-        
-        
+
+
         const recipeDiv = document.querySelector(`#recipe-Id--${recipeId}`)
         //   console.log(recipeDiv)
 
-        
+
         API.getOneRecipe(recipeId).then(recipeToEdit => {
             console.log("hi from edit handle")
             htmlBuilder.clearContainer(recipeDiv)
@@ -111,15 +111,15 @@ const newRecipe = {
 
     //update recipe handler after the recipe has been edited
     handleUpdateRecipe(event) {
-        
+
         event.preventDefault()
         // split the id to get the number value given to the edit button
         let recipeId = parseInt(event.target.id.split("--")[1])
         // console.log(recipeId)
         // console.log(event)
-        
-        
-        
+
+
+
         const editedRecipeTitle = document.querySelector(`#edit-recipe-title--${recipeId}`).value
         const editedRecipeIngredients = document.querySelector(`#edit-recipe-ingredients--${recipeId}`).value
         const editesRecipeInstructions = document.querySelector(`#edit-recipe-instructions--${recipeId}`).value
@@ -128,7 +128,7 @@ const newRecipe = {
         const editRecipeDifficulty = document.querySelector(".editDiff")
 
         //var TextInsideLi = ctrl.getElementsByTagName('p')[0].innerHTML;
-       
+
         console.log(editRecipeCategory.id.split("--")[1])
         // console.log(editedRecipeTitle.value, editedRecipeIngredients.value, editesRecipeInstructions.value)
 
@@ -155,9 +155,9 @@ const newRecipe = {
         //     "id": 17
         //   }
         console.log(editedRecipe)
-        return  API.updateRecipe(recipeId, editedRecipe)
-         .then(() => clearSection.clearRecipe())
-         .then(() => recipeBuilder.listRecipe())
+        return API.updateRecipe(recipeId, editedRecipe)
+            .then(() => clearSection.clearRecipe())
+            .then(() => recipeBuilder.listRecipe())
     }
 }
 
